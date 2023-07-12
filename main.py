@@ -18,12 +18,16 @@ async def start_command(message: Message):
     await message.answer("Привет! Я магический шар, задай мне вопрос,а я на него отвечу.")
 
 
+@dp.message(Command(commands='help'))
+async def handle_help(message: Message):
+    await message.answer('Чем я могу помочь?')
+
+
 @dp.message(F.text)
 async def do_answer(message: Message):
     answer = AI.generate_answer()
     if answer:
         await message.answer(answer)
-
 
 async def main():
     try:
